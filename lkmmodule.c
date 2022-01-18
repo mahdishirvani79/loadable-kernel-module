@@ -181,7 +181,7 @@ static ssize_t iut_write(struct file *filep,const char __user *buffer, unsigned 
     copy_from_user(command, buffer, strlen(buffer));
     
     printk(KERN_INFO "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n");
-    /*while((token = strsep(command, ",")) != NULL)
+    while((token = strsep(command, ",")) != NULL)
     {
         strcpy(a[i], token);
         i++;
@@ -233,7 +233,7 @@ static ssize_t iut_write(struct file *filep,const char __user *buffer, unsigned 
      }
      //return errors == 0 ? 0 : -EFAULT;
     spin_unlock(&lock);
-*/ 
+
     return len;
 }
 
