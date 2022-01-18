@@ -27,6 +27,7 @@ static struct file_operations fops = {
 };
 
 long long accounts[100];
+static char command[200];
 
 void reverse(char str[], int length)
 {
@@ -167,21 +168,20 @@ static ssize_t iut_read(struct file *filep, char *buffer, size_t len, loff_t *of
     return errors == 0 ? strlen(message) : -EFAULT;
 }
 
-static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long len, loff_t *offset)
+static ssize_t iut_write(struct file *filep,const char __user *buffer, unsigned long len, loff_t *offset)
 {
     printk("write is started\n", buffer);
     //printk(buffer);
     char a[3][10];
     int errors;
-    char *command;
     //sprintf(command, "%s", buffer);
     //strcpy(command, buffer);
     char* token;
     int i;
     copy_from_user(command, buffer, strlen(buffer));
     
-    //printk(KERN_INFO "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n");
-    while((token = strsep(&command, ",")) != NULL)
+    printk(KERN_INFO "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n");
+    /*while((token = strsep(command, ",")) != NULL)
     {
         strcpy(a[i], token);
         i++;
@@ -233,7 +233,7 @@ static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long le
      }
      //return errors == 0 ? 0 : -EFAULT;
     spin_unlock(&lock);
- 
+*/ 
     return len;
 }
 

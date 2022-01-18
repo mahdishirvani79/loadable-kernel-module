@@ -9,7 +9,7 @@ def gateway(fd: int):
         os.write(fd, command)
 
 path = "/dev/iutnode"
-fd = os.open(path, os.os.O_RDWR)
+fd = os.open(path, os.O_RDWR)
 
 
 t1 = th.Thread(target=gateway, args=(fd,))
