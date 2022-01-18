@@ -183,11 +183,11 @@ static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long le
     copy_from_user(command, buffer, strlen(buffer));
     
     //printk(KERN_INFO "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n");
-    //while((token = strsep(&command, ",")) != NULL)
-    //{
-    //    strcpy(a[i], token);
-    //    i++;
-    //}
+    while((token = strsep(&command, ",")) != NULL)
+    {
+        strcpy(a[i], token);
+        i++;
+    }
     //printk(KERN_INFO "3333333333333\n");
 	//char* token = strsep(command, ",");
 	//int i = 0;
@@ -198,7 +198,7 @@ static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long le
 	//	//printf("%s\n" , token );
 	//	token = strsep(NULL, ",");
     //}
-    /*
+    
     if (strcmp(a[0],"e"))
     {
 	if(accounts[my_atoi(a[1])] < my_atoi(a[3]))
@@ -233,7 +233,7 @@ static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long le
         }
      }
      //return errors == 0 ? 0 : -EFAULT;
-*/     
+ 
     return len;
 }
 
