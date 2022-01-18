@@ -169,8 +169,6 @@ static ssize_t iut_read(struct file *filep, char *buffer, size_t len, loff_t *of
 
 static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long len, loff_t *offset)
 {
-    //spin_lock(&lock);
-    //spin_unlock(&lock);
     printk("write is started\n", buffer);
     //printk(buffer);
     char a[3][10];
@@ -199,6 +197,7 @@ static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long le
 	//	token = strsep(NULL, ",");
     //}
     
+    spin_lock(&lock);
     if (strcmp(a[0],"e"))
     {
 	if(accounts[my_atoi(a[1])] < my_atoi(a[3]))
@@ -233,6 +232,7 @@ static ssize_t iut_write(struct file *filep,const char *buffer, unsigned long le
         }
      }
      //return errors == 0 ? 0 : -EFAULT;
+    spin_unlock(&lock);
  
     return len;
 }
