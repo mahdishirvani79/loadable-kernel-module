@@ -27,7 +27,7 @@ static struct file_operations fops = {
 };
 
 long long accounts[100];
-static char command[200];
+static char __kernel *command;
 
 void reverse(char str[], int length)
 {
